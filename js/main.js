@@ -301,7 +301,7 @@ if (!('webkitSpeechRecognition' in window)) {
         //console.log("interim transcript: "+interim_transcript);
       }
     }
-    if(interim_transcript.match(/jump/gi)||interim_transcript.match(/saute/gi){
+    if(interim_transcript.match(/jump/gi)||interim_transcript.match(/saute/gi)){
       screenClick();
     }
     else if(final_transcript.match(/jump/gi)||final_transcript.match(/saute/gi)){
