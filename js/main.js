@@ -292,19 +292,21 @@ if (!('webkitSpeechRecognition' in window)) {
     for (var i = event.resultIndex; i < event.results.length; ++i){
       if(event.results[i].isFinal){
         final_transcript = event.results[i][0].transcript;
-        console.log("final transcript: "+final_transcript);
+        //console.log("final transcript: "+final_transcript);
       } else{
         interim_transcript = event.results[i][0].transcript;
-        console.log("interim transcript: "+interim_transcript);
+        //console.log("interim transcript: "+interim_transcript);
       }
     }
-    final_transcript = capitalize(final_transcript);
-    console.log("FINAL2 TRANSCRIPT: "+final_transcript);
     if(final_transcript.match(/jump/gi)||interim_transcript.match(/jump/gi)){
       screenClick();
     }
   };
 }
+
+//start recognition
+recognition.lang = dialect;
+recognition.start();
 
 function screenClick()
 {
@@ -315,8 +317,6 @@ function screenClick()
    else if(currentstate == states.SplashScreen)
    {
       startGame();
-      recognition.lang = dialect;
-      recognition.start();
    }
 }
 
