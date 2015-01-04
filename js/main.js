@@ -14,6 +14,9 @@
    See the License for the specific language governing permissions and
    limitations under the License.
 */
+/*
+  Edited by DarkCenobyte, trying to add vocal recognition (with Google Chrome) for fun~~~~~~
+*/
 
 var debugmode = false;
 
@@ -55,7 +58,7 @@ var loopPipeloop;
 
 //voice control
 var final_transcript = '';
-var dialect = 'en-US';
+var dialect = 'en-US'; //replace by 'fr-FR' for french dialect
 var ignore_onend;
 var start_timestamp;
 
@@ -298,8 +301,12 @@ if (!('webkitSpeechRecognition' in window)) {
         //console.log("interim transcript: "+interim_transcript);
       }
     }
-    if(final_transcript.match(/jump/gi)||interim_transcript.match(/jump/gi)){
+    if(interim_transcript.match(/jump/gi)||interim_transcript.match(/saute/gi){
       screenClick();
+    }
+    else if(final_transcript.match(/jump/gi)||final_transcript.match(/saute/gi)){
+      screenClick();
+      final_transcript = '';
     }
   };
 }
