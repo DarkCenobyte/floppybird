@@ -285,18 +285,21 @@ if (!('webkitSpeechRecognition' in window)) {
   };
   recognition.onerror = function(event){
     console.log("You have a problem with vocal recognition.");
-    console.log(event);
+    console.log(event.error);
   };
   recognition.onresult = function(event){
     var interim_transcript = '';
     for (var i = event.resultIndex; i < event.results.length; ++i){
       if(event.results[i].isFinal){
         final_transcript = event.results[i][0].transcript;
+        console.log("final transcript: "+final_transcript);
       } else{
         interim_transcript = event.results[i][0].transcript;
+        console.log("interim transcript: "+interim_transcript);
       }
     }
     final_transcript = capitalize(final_transcript);
+    console.log("FINAL2 TRANSCRIPT: "+final_transcript);
     if(final_transcript.match(/jump/gi)||interim_transcript.match(/jump/gi)){
       screenClick();
     }
